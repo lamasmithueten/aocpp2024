@@ -37,26 +37,18 @@ int main (int argc , char* argv[]){
 		while (iss >> number){
 			numbers.push_back(number);
 		}
-		if(std::is_sorted(numbers.begin(), numbers.end()) &&checkForSafety(numbers)){
-				sum++;
-		}
-		else if(std::is_sorted(numbers.begin(), numbers.end(), std::greater<int>()) && checkForSafety(numbers)){
-				sum++;
-		}
-		else{
-			for(int i=0; i<numbers.size(); i++){
-				std::vector <int> vector(numbers);
-				vector.erase(vector.begin()+i);
-				if(std::is_sorted(vector.begin(), vector.end()) &&checkForSafety(vector)){
-						sum++;
-						break;
-				}
-				else if(std::is_sorted(vector.begin(), vector.end(), std::greater<int>()) && checkForSafety(vector)){
-						sum++;
-						break;
-				}
-				
+		for(int i=0; i<numbers.size(); i++){
+			std::vector <int> vector(numbers);
+			vector.erase(vector.begin()+i);
+			if(std::is_sorted(vector.begin(), vector.end()) &&checkForSafety(vector)){
+					sum++;
+					break;
 			}
+			else if(std::is_sorted(vector.begin(), vector.end(), std::greater<int>()) && checkForSafety(vector)){
+					sum++;
+					break;
+			}
+			
 		}
 	}
 	std::cout << sum << "\n";
