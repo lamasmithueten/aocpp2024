@@ -14,14 +14,14 @@ bool checkForSafety(std::vector <int>& vec){
 		)>3 || 
 		abs(
 			vec[i]-vec[i+1]
-		)==0)return false;
+		)==0){
+			return false;
+		}
 
 	}
-	for (int i: vec)
-	std::cout << i << ' ';
-	std::cout << "\n";
 	return true;
 }
+
 
 int main (int argc , char* argv[]){
 	
@@ -37,18 +37,28 @@ int main (int argc , char* argv[]){
 		while (iss >> number){
 			numbers.push_back(number);
 		}
-		if(std::is_sorted(numbers.begin(), numbers.end())){
-			if(checkForSafety(numbers)){
+		if(std::is_sorted(numbers.begin(), numbers.end()) &&checkForSafety(numbers)){
 				sum++;
-			}
 		}
-		else if(std::is_sorted(numbers.begin(), numbers.end(), std::greater<int>())){
-			if(checkForSafety(numbers)){
+		else if(std::is_sorted(numbers.begin(), numbers.end(), std::greater<int>()) && checkForSafety(numbers)){
 				sum++;
+		}
+		else{
+			for(int i=0; i<numbers.size(); i++){
+				std::vector <int> vector(numbers);
+				vector.erase(vector.begin()+i);
+				if(std::is_sorted(vector.begin(), vector.end()) &&checkForSafety(vector)){
+						sum++;
+						break;
+				}
+				else if(std::is_sorted(vector.begin(), vector.end(), std::greater<int>()) && checkForSafety(vector)){
+						sum++;
+						break;
+				}
+				
 			}
 		}
 	}
-
 	std::cout << sum << "\n";
 
 	return 0;
