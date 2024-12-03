@@ -31,10 +31,6 @@ int main(int argc, char ** argv){
 			}
 		}	
 	}
-/*	    std::cout << "Extracted numbers:" << std::endl;
-    for (int num : numbers) {
-        std::cout << num << std::endl;
-    }*/
 	for (int i=0; i<numbers.size(); i++){
 		int number1=numbers[i++];
 		int number2=numbers[i];
